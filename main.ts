@@ -1,21 +1,22 @@
 input.onButtonPressed(Button.A, function () {
-    if (knuffelen < 10) {
-        variabele += 1
-        basic.showIcon(IconNames.Happy)
-    }
+    knuffelen += 5
 })
 input.onButtonPressed(Button.B, function () {
-    if (voeden < 10) {
-        variabele += 1
-        basic.showIcon(IconNames.Happy)
-    }
+    voeden += 5
 })
-let voeden = 0
-let knuffelen = 0
-let variabele = 20
+let knuffelen = 20
+let voeden = 20
+let dood = 1
+loops.everyInterval(1000, function () {
+    knuffelen += -1
+    voeden += -1
+})
 basic.forever(function () {
-    if (knuffelen > 10 && voeden > 10) {
-        variabele += -1
+    if (voeden < 10 && voeden > 1 && (knuffelen > 10 && knuffelen < 1)) {
         basic.showIcon(IconNames.Sad)
+    } else if (dood == 1) {
+        basic.showIcon(IconNames.Asleep)
+    } else if (voeden > 10 && knuffelen > 10) {
+        basic.showIcon(IconNames.Happy)
     }
 })
